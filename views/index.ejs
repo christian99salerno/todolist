@@ -18,6 +18,7 @@ $(document).ready( function() {
 $("#todo").on( "click", "input", function () {
 var data={
 value:$(this)[0].checked,
+nome:$(this).data("name"),
 _id:$(this)[0].id
 
 };
@@ -38,7 +39,7 @@ $.post("/todo-change", data);
 
 <label>
 
-  <input type="checkbox" name="value" id="<%= todo._id%>" value="<%= todo.value %>" 
+  <input type="checkbox" data-name="<%= todo.nome %>" name="value" id="<%= todo._id%>" value="<%= todo.value %>" 
   <%= (todo.value=="true") ? "checked" : "" %>> <%= todo.nome %>
 
 </label>

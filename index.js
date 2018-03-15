@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require("mongodb").ObjectId;
 const bodyParser = require("body-parser");
 
 let db;
@@ -43,7 +44,15 @@ app.post("/todo", function(req, res) {
 });
 
 app.post("/todo-change", function(req, res) {
-  db.collection("todos").save(req.body);
+  console.log(req.body);
+  const todo=
+    {
+      _id:ObjectId(req.body._id),
+      nome:req.body.nome,
+        value:req.body.value
+    };
+
+  db.collection("todos").save(todo);
   res.redirect("/");
 
 
